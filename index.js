@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const middleware = require('./middleware/index');
 const cors = require('cors');
 const keys = require('./config/keys');
+const routes = require('./routes/userRoutes');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,6 +39,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/api', routes);
 
 const PORT = process.env.PORT || 3000;
 
