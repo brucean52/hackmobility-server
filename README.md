@@ -5,12 +5,14 @@
 ## How to use
 
 create in dev.js file in config directory
-`module.exports = {
+```
+module.exports = {
   smartcarClientId: 'API-KEY-GOES-HERE,
   smartcarClientSecret: 'CLIENT-SECRET',
   redirectURI: 'http://localhost:3000/exchange',
   mongoURI: 'mongodb+srv://MONGO-DB-INFO-GOES-HERE',
-};`
+};
+```
 
 
 1. `npm install`
