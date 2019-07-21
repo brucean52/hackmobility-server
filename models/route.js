@@ -15,6 +15,12 @@ let routeSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  date: {
+    type: String
+  },
+  time: {
+    type: String
+  },
   passengerIds: [{
     type: String
   }]
