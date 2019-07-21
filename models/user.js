@@ -22,6 +22,10 @@ let userSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  tokens: {
+    type: String,
+    require: false
+  }
 }, {timestamps: true});
 
 let User = module.exports = mongoose.model('User', userSchema);
