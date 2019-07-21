@@ -32,12 +32,12 @@ carController.findCarByOwnerId = async (req, res) => {
             if (car) {
                 res.status(200).send({
                     status: 200,
-                    message: car
+                    carInfo: car
                 });
             } else {
                 res.status(200).send({
                     status: 200,
-                    message: "no car is found"
+                    carInfo: null
                 });
             }
 
