@@ -122,10 +122,29 @@ userController.addRoute = async (req, res) => {
     newRoute.driverId = req.body.driverId;
     newRoute.startObj = startObj;
     newRoute.finishObj = finishObj;
-    newRoute.passengerIds.push(req.body.passengerId);
 
     const savedRoute = await newRoute.save();
     res.json(savedRoute)
+}
+
+userController.updateRoute = async (req, res) => {
+  // let newRoute = new Route();
+  // const startObj = {
+  //   address: req.body.startAddress,
+  //   lat: req.body.startLat,
+  //   lng: req.body.startLng
+  // }
+  // const finishObj = {
+  //   address: req.body.finishAddress,
+  //   lat: req.body.finishLat,
+  //   lng: req.body.finishLng
+  // }
+  // newRoute.driverId = req.body.driverId;
+  // newRoute.startObj = startObj;
+  // newRoute.finishObj = finishObj;
+
+  // const savedRoute = await newRoute.save();
+  // res.json(savedRoute)
 }
 
 module.exports = userController;
