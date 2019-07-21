@@ -98,13 +98,7 @@ userController.editUser = (req, res) => {
 
 userController.getRoutes = (req, res) => {
   Routes.find({}, (err, routes) => {
-    var routeMap = {};
-
-    routes.forEach(route => {
-      routeMap[route._id] = route;
-    });
-
-    res.send(userMap);
+    res.send(routes);
   });
 }
 
@@ -123,9 +117,17 @@ userController.addRoute = async (req, res) => {
     newRoute.driverId = req.body.driverId;
     newRoute.startObj = startObj;
     newRoute.finishObj = finishObj;
+    newRoute.date = req.body.date;
+    newRoute.time = req.body.time;
 
     const savedRoute = await newRoute.save();
     res.json(savedRoute)
+}
+userController.getUserRoutes = (req, res) => {
+  const user = req.params.uid;
+  Route.find({ driverId: user }, (err, routes) => {
+    res.send(routes);
+  });
 }
 
 userController.updateRoute = async (req, res) => {

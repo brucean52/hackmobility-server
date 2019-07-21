@@ -34,6 +34,7 @@ router.post('/user/edit', userController.editUser);
 
 // Routes
 router.get('/user/routes', userController.getRoutes);
+router.get('/user/userroutes/:uid', userController.getUserRoutes);
 router.post('/user/addroute', userController.addRoute);
 
 module.exports = router;
