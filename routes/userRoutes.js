@@ -33,6 +33,6 @@ router.post('/user/edit', userController.editUser);
 
 // Routes
 router.get('/user/routes', userController.getRoutes);
-router.get('/user/addroute', userController.addRoute);
+router.post('/user/addroute', userController.addRoute);
 
 module.exports = router;
