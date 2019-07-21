@@ -5,7 +5,6 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 // const middleware = require('./middleware/index');
-const smartcar = require('smartcar');
 const cors = require('cors');
 const keys = require('./config/keys');
 const routes = require('./routes/userRoutes');
@@ -49,25 +48,15 @@ app.use(passport.session());
 //   testMode: true, // launch Smartcar Connect in test mode
 // });
 
-// // Redirect to Smartcar Connect
-// app.get('/login', function(req, res) {
-//   const link = client.getAuthUrl();
+// Redirect to Smartcar Connect
+app.get('/login', function(req, res) {
+  const link = client.getAuthUrl();
+  console.log('@@@@ authLink', link);
+  // redirect to the link
+  res.redirect(link);
+});
 
-//   // redirect to the link
-//   res.redirect(link);
-// });
 
-// app.get('/exchange', function(req, res) {
-//   const code = req.query.code;
-//   console.log('code', code);
-//   return client.exchangeCode(code)
-//     .then(function(_access) {
-//       // in a production app you'll want to store this in some kind of persistent storage
-//       access = _access;
-
-//       res.sendStatus(200);
-//     });
-// });
 
 
 // // Handle Smartcar callback with auth code
