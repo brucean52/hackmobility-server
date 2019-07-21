@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-// const middleware = require('./middleware/index');
+const middleware = require('./middleware/index');
 const cors = require('cors');
 const keys = require('./config/keys');
 const routes = require('./routes/userRoutes');
@@ -39,7 +39,19 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function (req, res, next) {
+  middleware.isLoggedIn;
+  if(req.user){
+    console.log('req user', req.user);
+    res.locals.currentUser = req.user;
+    req.login = true;
+  } else {
+    req.login = false;
+  }
 
+
+  next();
+});
 // const client = new smartcar.AuthClient({
 //   clientId: keys.smartcarClientId,
 //   clientSecret: keys.smartcarClientSecret,
