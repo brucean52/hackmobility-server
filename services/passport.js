@@ -17,6 +17,7 @@ passport.deserializeUser((id, done)=> {
 
 passport.use(new LocalStrategy(
   function(email, password, done) {
+	  console.log("inside passport");
     User.getUserByUsername(email, function(err, user){
    	  if(err) throw err;
    	  if(!user){

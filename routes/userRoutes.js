@@ -7,6 +7,7 @@ let router = express.Router();
 
 router.get('/user/profile', userController.profile);
 router.get('/user/logout', userController.logout);
+router.get('/user/all', userController.getAllUsers)
 
 
 
