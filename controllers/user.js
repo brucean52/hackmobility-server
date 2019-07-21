@@ -84,6 +84,13 @@ userController.addUser = async (req, res) => {
   }
 }
 
+userController.getUserById = (req, res) => {
+  const user = req.params.uid;
+  User.find({ _id: user }, (err, user) => {
+    res.send(user);
+  });
+}
+
 userController.editUser = (req, res) => {
   User.update({_id: req.user.id}, {
     first_name: req.body.first_name,
@@ -97,7 +104,7 @@ userController.editUser = (req, res) => {
 }
 
 userController.getRoutes = (req, res) => {
-  Routes.find({}, (err, routes) => {
+  Route.find({}, (err, routes) => {
     res.send(routes);
   });
 }
@@ -130,24 +137,13 @@ userController.getUserRoutes = (req, res) => {
   });
 }
 
-userController.updateRoute = async (req, res) => {
-  // let newRoute = new Route();
-  // const startObj = {
-  //   address: req.body.startAddress,
-  //   lat: req.body.startLat,
-  //   lng: req.body.startLng
-  // }
-  // const finishObj = {
-  //   address: req.body.finishAddress,
-  //   lat: req.body.finishLat,
-  //   lng: req.body.finishLng
-  // }
-  // newRoute.driverId = req.body.driverId;
-  // newRoute.startObj = startObj;
-  // newRoute.finishObj = finishObj;
+userController.addPassenger = async (req, res) => {
+  Route.update({_id: req.body.routeId},
+    { $push: { passengerIds: req.body.passengerId } }, function (err, results) {
+    if (err) console.log(err);
 
-  // const savedRoute = await newRoute.save();
-  // res.json(savedRoute)
+    res.json({ success: true })
+  });
 }
 
 module.exports = userController;

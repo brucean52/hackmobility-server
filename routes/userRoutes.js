@@ -8,6 +8,7 @@ let router = express.Router();
 router.get('/user/profile', userController.profile);
 router.get('/user/logout', userController.logout);
 router.get('/user/all', userController.getAllUsers)
+router.get('/user/id/:uid', userController.getUserById)
 
 
 
@@ -36,5 +37,6 @@ router.post('/user/edit', userController.editUser);
 router.get('/user/routes', userController.getRoutes);
 router.get('/user/userroutes/:uid', userController.getUserRoutes);
 router.post('/user/addroute', userController.addRoute);
+router.post('/user/addpassenger', userController.addPassenger);
 
 module.exports = router;
