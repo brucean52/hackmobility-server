@@ -2,6 +2,7 @@ const Car = require('../models/car');
 const keys = require('../config/keys');
 const smartcar = require('smartcar');
 const got = require('got');
+const User = require('../models/user');
 
 var carController = {};
 let _accessToken = null;
@@ -26,12 +27,20 @@ carController.handleSmartCarCB = async (req, res) => {
     const code = req.query.code;
     const token = await client.exchangeCode(code);
     this._accessToken = token.accessToken;
-    const vehicleIds = smartcar.getVehicleIds(this._accessToken);
+    // const vehicleIds = smartcar.getVehicleIds(this._accessToken);
+    const {_id} = res.locals.currentUser;
+    User.update({_id: _id}, {
+        tokens: this._accessToken
+      }, function (err, results) {
+        if (err) console.log(err);
+        console.log(results);
+        //res.json({ success: true })
+      });
     res.status(200).json({
         code: 200,
         message: "get token sucessful",
-        vehicleIds: vehicleIds
     });
+    
 }
 
 carController.getAccessToken = async (req, res) => {
