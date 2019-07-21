@@ -1,5 +1,6 @@
 const express = require('express');
 const userController = require('../controllers/user');
+const carController = require('../controllers/car');
 // const middleware = require('../middleware/index');
 const passport = require('passport');
 
@@ -39,4 +40,8 @@ router.get('/user/userroutes/:uid', userController.getUserRoutes);
 router.post('/user/addroute', userController.addRoute);
 router.post('/user/addpassenger', userController.addPassenger);
 
+
+// Car Routes
+router.post('/cars', carController.addCar);
+router.get('/cars/owner/:ownerId', carController.findCarByOwnerId)
 module.exports = router;
