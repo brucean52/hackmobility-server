@@ -9,6 +9,7 @@ userController.login = (req, res) => {
   userInfo.email = req.user.email
   userInfo.first_name = req.user.first_name
   userInfo.last_name = req.user.last_name
+  userInfo.id = req.user._id
   userInfo.isAuthenticated = true;
 
   res.send(userInfo)
