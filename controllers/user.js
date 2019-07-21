@@ -146,4 +146,13 @@ userController.addPassenger = async (req, res) => {
   });
 }
 
+userController.removePassenger = async (req, res) => {
+  Route.update({_id: req.body.routeId},
+    { $pull: { passengerIds: req.body.passengerId } }, function (err, results) {
+    if (err) console.log(err);
+
+    res.json({ success: true })
+  });
+}
+
 module.exports = userController;
