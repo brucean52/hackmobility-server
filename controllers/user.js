@@ -56,7 +56,7 @@ userController.register = (req, res) => {
   });
 }
 
-userController.addUser = (req, res) => {
+userController.addUser = async (req, res) => {
   const password = req.body.password;
   const password_confirm = req.body.password_confirm;
 
@@ -68,11 +68,16 @@ userController.addUser = (req, res) => {
     newUser.email = req.body.email;
     newUser.password = bcrypt.hashSync(req.body.password, 10);
 
+
     newUser.save();
     res.status(201).send({
       status: 201,
       message: "User Created Sucessful"
     })
+// =======
+//     const savedUser = await newUser.save();
+//     res.json(savedUser);
+// >>>>>>> master
   } else{
     res.status(500).send("{ errors: \"Passwords don't match\" }").end()
   }
@@ -102,15 +107,25 @@ userController.getRoutes = (req, res) => {
   });
 }
 
-userController.addRoute = (req, res) => {
+userController.addRoute = async (req, res) => {
     let newRoute = new Route();
-
+    const startObj = {
+      address: req.body.startAddress,
+      lat: req.body.startLat,
+      lng: req.body.startLng
+    }
+    const finishObj = {
+      address: req.body.finishAddress,
+      lat: req.body.finishLat,
+      lng: req.body.finishLng
+    }
     newRoute.driverId = req.body.driverId;
-    newRoute.startObj = req.body.startObj;
-    newRoute.finishObj = req.body.finishObj;
+    newRoute.startObj = startObj;
+    newRoute.finishObj = finishObj;
     newRoute.passengerIds.push(req.body.passengerId);
 
-    newRoute.save();
+    const savedRoute = await newRoute.save();
+    res.json(savedRoute)
 }
 
 module.exports = userController;
