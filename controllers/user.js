@@ -9,7 +9,7 @@ userController.login = (req, res) => {
   userInfo.email = req.user.email
   userInfo.first_name = req.user.first_name
   userInfo.last_name = req.user.last_name
-
+  userInfo.isAuthenticated = true;
 
   res.send(userInfo)
 }
@@ -33,6 +33,7 @@ userController.checkLogin = (req, res) => {
 
 userController.profile = (req, res) => {
   res.send({
+    isauthenticated: req.isAuthenticated(),
     profile: 'profile'
   });
 }
@@ -68,6 +69,10 @@ userController.addUser = (req, res) => {
     newUser.password = bcrypt.hashSync(req.body.password, 10);
 
     newUser.save();
+    res.status(201).send({
+      status: 201,
+      message: "User Created Sucessful"
+    })
   } else{
     res.status(500).send("{ errors: \"Passwords don't match\" }").end()
   }
