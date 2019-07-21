@@ -52,9 +52,10 @@ userController.getAllUsers = (req, res) => {
 }
 
 userController.register = (req, res) => {
-  res.send({
-    register: 'register!'
-  });
+  res.status(201).send({
+    status: 201,
+    message: "User Created Sucessful"
+  })
 }
 
 userController.addUser = async (req, res) => {
@@ -152,6 +153,17 @@ userController.removePassenger = async (req, res) => {
     if (err) console.log(err);
 
     res.json({ success: true })
+  });
+}
+
+userController.deleteRoute = async (req, res) => {
+  Route.deleteOne({ _id: req.body.routeId }, function (err, results) {
+    if (err) return handleError(err);
+    
+    if(results){
+      res.json({ success: true });  
+    }
+    
   });
 }
 
