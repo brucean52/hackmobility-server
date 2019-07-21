@@ -49,5 +49,5 @@ router.get('/cars/owner/:ownerId', carController.findCarByOwnerId);
 router.get('/cars/smart_car_url', carController.getSmartCarOauthURL);
 router.get('/cars/smart_car_cb', carController.handleSmartCarCB);
 router.get('/cars/smart_car_token', carController.getAccessToken);
-router.get('/cars/smart_car/vihecles', carController.get_sm_vehicles);
+router.get('/cars/smart_car/vehicles', carController.get_sm_vehicles);
 module.exports = router;
