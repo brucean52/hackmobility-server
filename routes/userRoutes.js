@@ -40,7 +40,7 @@ router.get('/user/userroutes/:uid', userController.getUserRoutes);
 router.post('/user/addroute', userController.addRoute);
 router.post('/user/addpassenger', userController.addPassenger);
 router.post('/user/removepassenger', userController.removePassenger);
-
+router.post('/user/deleteroute', userController.deleteRoute);
 
 
 // Car Routes
