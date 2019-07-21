@@ -9,6 +9,7 @@ router.get('/user/profile', userController.profile);
 router.get('/user/logout', userController.logout);
 
 
+
 router.post('/user/new', userController.addUser);
 router.post('/user/login', passport.authenticate('local'), userController.login);
 
@@ -29,5 +30,9 @@ router.post('/user/tester',
 );
 
 router.post('/user/edit', userController.editUser);
+
+// Routes
+router.get('/user/routes', userController.getRoutes);
+router.get('/user/addroute', userController.addRoute);
 
 module.exports = router;

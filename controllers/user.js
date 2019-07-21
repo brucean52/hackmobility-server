@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Route = require('../models/route')
 const bcrypt = require('bcrypt');
 
 var userController = {};
@@ -82,6 +83,29 @@ userController.editUser = (req, res) => {
 
     res.json({ success: true })
   });
+}
+
+userController.getRoutes = (req, res) => {
+  Routes.find({}, (err, routes) => {
+    var routeMap = {};
+
+    routes.forEach(route => {
+      routeMap[route._id] = route;
+    });
+
+    res.send(userMap);
+  });
+}
+
+userController.addRoute = (req, res) => {
+    let newRoute = new Route();
+
+    newRoute.driverId = req.body.driverId;
+    newRoute.startObj = req.body.startObj;
+    newRoute.finishObj = req.body.finishObj;
+    newRoute.passengerIds.push(req.body.passengerId);
+
+    newRoute.save();
 }
 
 module.exports = userController;
